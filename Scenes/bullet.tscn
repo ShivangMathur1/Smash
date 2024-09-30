@@ -1,20 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dty08x2mweo2q"]
+[gd_scene load_steps=3 format=3 uid="uid://dty08x2mweo2q"]
 
 [ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_6vwpb"]
-[ext_resource type="Texture2D" uid="uid://bbbjr7c2qnpl5" path="res://Assets/Sprites/SlimeGreen/SlimeBasic_00029.png" id="1_8gqoc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kwdur"]
-radius = 3.0
-height = 10.0
+radius = 2.0
+height = 8.0
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_6vwpb")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.04, 0.04)
-texture = ExtResource("1_8gqoc")
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -26,6 +21,12 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_kwdur")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -4.0
+offset_top = -2.0
+offset_right = 4.0
+offset_bottom = 2.0
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8o6ewvvp7o8s"]
+[gd_scene load_steps=3 format=3 uid="uid://b8o6ewvvp7o8s"]
 
 [ext_resource type="Script" path="res://Scripts/OneShotParticles.gd" id="1_ice2f"]
 
@@ -6,27 +6,21 @@
 _data = [Vector2(0.00561798, 0.989011), 0.0, 0.0, 0, 0, Vector2(0.994382, 0.461538), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Gradient" id="Gradient_y1h71"]
-offsets = PackedFloat32Array(0.0133333, 1)
-colors = PackedColorArray(0.217329, 0.00056982, 0.478108, 1, 0.870637, 0.158066, 0.565589, 0)
-
 [node name="DashCloud" type="CPUParticles2D"]
 z_as_relative = false
 emitting = false
 amount = 250
 lifetime = 0.4
 one_shot = true
-preprocess = 0.05
-explosiveness = 0.45
+explosiveness = 0.3
 emission_shape = 1
-emission_sphere_radius = 8.0
+emission_sphere_radius = 5.0
 direction = Vector2(-1, 0)
 spread = 0.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 111.11
-initial_velocity_max = 111.11
+initial_velocity_min = 12.0
+initial_velocity_max = 12.0
 radial_accel_min = -40.0
 radial_accel_max = -40.0
 scale_amount_curve = SubResource("Curve_jdj5u")
-color_ramp = SubResource("Gradient_y1h71")
 script = ExtResource("1_ice2f")

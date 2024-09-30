@@ -8,7 +8,7 @@ const DASH_CLOUD = preload("res://Scenes/dash_cloud.tscn")
 @onready var dash_timer = $DashTimer
 @onready var label = $CanvasLayer/Label
 
-const SPEED = 300.0
+const SPEED = 200.0
 const JUMP_VELOCITY = -500.0
 const DASH_SPEED = 600
 const WALL_JUMP_VELOCITY = Vector2(200, -400)
@@ -64,10 +64,10 @@ func _physics_process(delta):
 	# Handle dashing
 	if Input.is_action_just_pressed("dash") and can_dash:
 		velocity.x = DASH_SPEED * facing
-		velocity.y /= 4
+		velocity.y = 0
 		horizontal_control = 0
 		can_dash = false
-		dash_timer.start(0.5)
+		dash_timer.start(0.2)
 		play_particle(DASH_CLOUD, Vector2(-facing, 0))
 	
 	# Handle the movement/deceleration.
@@ -117,7 +117,6 @@ func air_gravity_values():
 func play_particle(particle, direction):
 	var instance = particle.instantiate()
 	instance.direction = direction
-	instance.emitting = true
 	add_child(instance)
 
 func _on_shoot_timer_timeout():
