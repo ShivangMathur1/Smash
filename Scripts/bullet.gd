@@ -1,25 +1,30 @@
-extends Area2D
+extends CharacterBody2D
 
 @onready var death_timer = $DeathTimer
-
-var velocity: Vector2
-
+@export var BULLET_SPEED = 800
 const SPARKS = preload("res://Scenes/Sparks.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var sparks = SPARKS.instantiate()
-	sparks.direction = -sparks.direction
-	add_child(sparks)
-	velocity = Vector2(1000, 0).rotated(rotation)
+	sparks.direction = Vector2(1, 0).rotated(rotation)
+	sparks.position = global_position
+	add_sibling(sparks)
+	velocity = sparks.direction * BULLET_SPEED
 	death_timer.start()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position += velocity * delta
+	var object = move_and_collide(velocity * delta)
+	if object != null:
+		var sparks = SPARKS.instantiate()
+		sparks.direction = object.get_normal()
+		sparks.position = global_position
+		add_sibling(sparks)
+		queue_free()
 
 func _on_death_timer_timeout():
 	queue_free()
 
-func _on_area_2d_body_entered():
+func _on_hurtbox_hit() -> void:
 	queue_free()

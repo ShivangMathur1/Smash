@@ -15,10 +15,19 @@ run/main_scene="res://Scenes/Level0.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Enums="*res://Scripts/enums.gd"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[global_group]
+
+CameraZone="Depicts a zone with specific camera parameter requirements"
+player=""
 
 [input]
 
@@ -68,6 +77,10 @@ lock={
 2d_physics/layer_1="player"
 2d_physics/layer_2="static objects"
 2d_physics/layer_3="player projectiles"
+2d_physics/layer_4="breakable object"
+2d_physics/layer_5="creatures"
+2d_physics/layer_6="hurtbox"
+2d_physics/layer_7="hitbox"
 
 [rendering]
 
