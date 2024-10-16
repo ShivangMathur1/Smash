@@ -1,13 +1,14 @@
 extends CharacterBody2D
 
-const BULLET = preload("res://Scenes/bullet.tscn")
-const SPARKS = preload("res://Scenes/Sparks.tscn")
-const DASH_CLOUD = preload("res://Scenes/dash_cloud.tscn")
+@export var BULLET: PackedScene = preload("res://Scenes/character_bullet.tscn")
+@export var SPARKS: PackedScene = preload("res://Scenes/Particles/Sparks.tscn")
+@export var DASH_CLOUD: PackedScene = preload("res://Scenes/Particles/dash_cloud.tscn")
 
 @onready var shoot_timer = $ShootTimer
 @onready var dash_timer = $DashTimer
 @onready var horizontal_control_timer: Timer = $HorizontalControlTimer
 @onready var label = $CanvasLayer/Label
+@onready var health: Health = $Health
 
 const SPEED = 200.0
 const JUMP_VELOCITY = -500.0
@@ -151,6 +152,13 @@ func _on_dash_timer_timeout():
 
 func _on_horizontal_control_timer_timeout() -> void:
 	horizontal_control = true
+
+func _on_health_death() -> void:
+	print("dead")
+
+func _on_hurtbox_take_damage(attack: Attack) -> void:
+	health.take_damage(attack)
+
 
 # Coyote time
 # bullet spark direction

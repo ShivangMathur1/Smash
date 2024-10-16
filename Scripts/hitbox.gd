@@ -1,8 +1,11 @@
-extends Area2D
+class_name Hitbox2D extends Area2D
 
-class_name Hitbox2D
+@export var damage: float
+@export var force: float
 
-signal take_damage(attack: Attack)
+signal hit
 
-func hit(attack: Attack):
-	take_damage.emit(attack)
+func _on_area_entered(hurtbox: Hurtbox2D) -> void:
+	if hurtbox!= null:
+		hurtbox.hurt(Attack.new(damage, force))
+		hit.emit()

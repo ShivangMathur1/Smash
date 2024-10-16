@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://c02s7yf50nmet"]
+[gd_scene load_steps=6 format=3 uid="uid://c02s7yf50nmet"]
 
 [ext_resource type="Script" path="res://Scripts/character.gd" id="1_28gla"]
+[ext_resource type="PackedScene" uid="uid://c8bwem75fa8i8" path="res://Scenes/Composites/Health.tscn" id="2_5qa7e"]
+[ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Composites/Hurtbox.tscn" id="3_h08kw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rh7ij"]
+radius = 4.0
+height = 18.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2o1yp"]
 radius = 4.0
 height = 18.0
 
@@ -35,6 +41,17 @@ offset_bottom = 14.0
 
 [node name="HorizontalControlTimer" type="Timer" parent="."]
 
+[node name="Health" parent="." instance=ExtResource("2_5qa7e")]
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_h08kw")]
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_2o1yp")
+
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="HorizontalControlTimer" to="." method="_on_horizontal_control_timer_timeout"]
+[connection signal="death" from="Health" to="." method="_on_health_death"]
+[connection signal="take_damage" from="Hurtbox" to="." method="_on_hurtbox_take_damage"]

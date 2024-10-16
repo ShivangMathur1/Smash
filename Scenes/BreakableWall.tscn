@@ -1,18 +1,18 @@
 [gd_scene load_steps=6 format=3 uid="uid://uf6njsxgk41l"]
 
-[ext_resource type="Script" path="res://Scenes/breakable_object.gd" id="1_aengx"]
+[ext_resource type="Script" path="res://Scripts/breakable_object.gd" id="1_aengx"]
 [ext_resource type="Texture2D" uid="uid://ceed2i2ut4r2j" path="res://Assets/Tilesets/four-seasons-tileset.png" id="1_quidk"]
-[ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Hitbox.tscn" id="2_rp2un"]
+[ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Composites/Hurtbox.tscn" id="3_3iq0k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_60vj2"]
 size = Vector2(16, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5v5sk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hn1xp"]
 size = Vector2(16, 32)
 
 [node name="Breakable wall" type="StaticBody2D"]
 collision_layer = 8
-collision_mask = 5
+collision_mask = 0
 script = ExtResource("1_aengx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -24,9 +24,10 @@ hframes = 11
 vframes = 8
 frame = 1
 
-[node name="Hitbox" parent="." instance=ExtResource("2_rp2un")]
+[node name="Hurtbox" parent="." instance=ExtResource("3_3iq0k")]
+collision_layer = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("RectangleShape2D_5v5sk")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_hn1xp")
 
-[connection signal="take_damage" from="Hitbox" to="." method="_on_hitbox_take_damage"]
+[connection signal="take_damage" from="Hurtbox" to="." method="_on_hurtbox_take_damage"]
