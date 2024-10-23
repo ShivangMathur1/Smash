@@ -1,0 +1,16 @@
+extends Sprite2D
+@export var EXPLOSION: PackedScene = preload("res://Scenes/Particles/explosion.tscn")
+@onready var hurtbox_2d: Hurtbox2D = $Hurtbox2D
+
+@export var live_frame: int
+@export var death_frame: int
+
+func _ready() -> void:
+	frame = live_frame
+
+func _on_hurtbox_2d_take_damage(attack: Attack) -> void:
+	var explosion = EXPLOSION.instantiate()
+	explosion.position = global_position
+	add_sibling(explosion)
+	hurtbox_2d.queue_free()
+	frame = death_frame

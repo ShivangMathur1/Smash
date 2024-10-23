@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bf64oqws2y1gg"]
+
+[ext_resource type="Texture2D" uid="uid://ceed2i2ut4r2j" path="res://Assets/Tilesets/four-seasons-tileset.png" id="1_jj5fk"]
+[ext_resource type="Script" path="res://Scripts/hurtbox.gd" id="2_6ea3a"]
+[ext_resource type="Script" path="res://Scripts/breakable_background.gd" id="2_nos82"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xeo7l"]
+size = Vector2(16, 16)
+
+[node name="fungus_yellow_breakable_big" type="Sprite2D"]
+texture = ExtResource("1_jj5fk")
+hframes = 11
+vframes = 16
+frame = 21
+script = ExtResource("2_nos82")
+live_frame = 20
+death_frame = 21
+
+[node name="Hurtbox2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("2_6ea3a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox2D"]
+shape = SubResource("RectangleShape2D_xeo7l")
+
+[connection signal="take_damage" from="Hurtbox2D" to="." method="_on_hurtbox_2d_take_damage"]
