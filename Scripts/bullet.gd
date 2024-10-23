@@ -1,17 +1,18 @@
 extends CharacterBody2D
 
 @onready var death_timer = $DeathTimer
-@onready var hitbox = $Hitbox
+@onready var hitbox: Hitbox2D = $Hitbox
 
 @export var BULLET_SPEED = 800
-@export var BULLET_DAMAGE = 1
+@export var BULLET_ATTACK: Attack = Attack.new(1, 0)
 @export var SPARKS: PackedScene = preload("res://Scenes/Particles/Sparks.tscn")
+
 var direction = Vector2.RIGHT
 
 func _ready():
 	direction = Vector2.RIGHT.rotated(rotation)
 	velocity = direction * BULLET_SPEED
-	hitbox.damage = BULLET_DAMAGE
+	hitbox.attack = BULLET_ATTACK
 	
 	spawn_sparks(direction)
 	death_timer.start()
