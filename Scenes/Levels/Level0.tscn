@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c02s7yf50nmet" path="res://Scenes/character.tscn" id="1_n7tw3"]
 [ext_resource type="Texture2D" uid="uid://ceed2i2ut4r2j" path="res://Assets/Tilesets/four-seasons-tileset.png" id="5_bhbjh"]
-[ext_resource type="PackedScene" uid="uid://uf6njsxgk41l" path="res://Scenes/BreakableWall.tscn" id="6_rrgvo"]
+[ext_resource type="PackedScene" uid="uid://g74siw6yatg8" path="res://Scenes/fungus_yellow_breakable_big.tscn" id="6_kr6hd"]
 [ext_resource type="PackedScene" uid="uid://bsnn7lp0o7igw" path="res://Scenes/Composites/LevelSwitch.tscn" id="7_80od0"]
 [ext_resource type="PackedScene" uid="uid://tsefbhs1ve0u" path="res://Scenes/Levels/Level1.tscn" id="8_e1kyh"]
 [ext_resource type="PackedScene" uid="uid://cugeqrxbbu65h" path="res://Scenes/flying_enemy.tscn" id="9_aamrn"]
@@ -201,7 +201,7 @@ radius = 191.651
 [node name="CameraZones" type="Node2D" parent="."]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_n7tw3")]
-position = Vector2(1492, -568)
+position = Vector2(-83, 85)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 zoom = Vector2(2, 2)
@@ -225,26 +225,13 @@ shape = SubResource("CircleShape2D_cdst8")
 [node name="FlyingEnemy" parent="." instance=ExtResource("9_aamrn")]
 position = Vector2(1557, -579)
 
-[node name="Breakable walls" type="Node" parent="."]
+[node name="fungus_yellow_breakable_big" parent="." instance=ExtResource("6_kr6hd")]
+position = Vector2(-176, 176)
 
-[node name="Breakable wall" parent="Breakable walls" instance=ExtResource("6_rrgvo")]
-position = Vector2(-32, 168)
-
-[node name="Breakable wall2" parent="Breakable walls" instance=ExtResource("6_rrgvo")]
-position = Vector2(-16, 168)
-
-[node name="Breakable wall3" parent="Breakable walls" instance=ExtResource("6_rrgvo")]
-position = Vector2(0, 168)
-
-[node name="Breakable wall4" parent="Breakable walls" instance=ExtResource("6_rrgvo")]
-position = Vector2(16, 168)
-
-[node name="Breakable wall5" parent="Breakable walls" instance=ExtResource("6_rrgvo")]
-position = Vector2(1768, -1248)
-rotation = 1.5708
-
-[node name="Breakable wall6" parent="Breakable walls" instance=ExtResource("6_rrgvo")]
-position = Vector2(1800, -1248)
-rotation = 1.5708
+[node name="fungus_yellow_breakable_big2" parent="." instance=ExtResource("6_kr6hd")]
+position = Vector2(-152, 176)
+frame = 32
+live_frame = 31
+death_frame = 32
 
 [connection signal="body_entered" from="LevelSwitch" to="LevelSwitch" method="_on_body_entered"]

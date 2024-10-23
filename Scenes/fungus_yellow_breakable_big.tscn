@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bf64oqws2y1gg"]
+[gd_scene load_steps=5 format=3 uid="uid://g74siw6yatg8"]
 
 [ext_resource type="Texture2D" uid="uid://ceed2i2ut4r2j" path="res://Assets/Tilesets/four-seasons-tileset.png" id="1_jj5fk"]
 [ext_resource type="Script" path="res://Scripts/hurtbox.gd" id="2_6ea3a"]
@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xeo7l"]
 size = Vector2(16, 16)
 
-[node name="fungus_yellow_breakable_big" type="Sprite2D"]
+[node name="Yellow fungus" type="Sprite2D"]
 texture = ExtResource("1_jj5fk")
 hframes = 11
 vframes = 16
