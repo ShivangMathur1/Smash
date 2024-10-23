@@ -138,6 +138,8 @@ func play_particle(particle, direction):
 	instance.direction = direction
 	add_child(instance)
 
+func collect(items: Item):
+	print("Money: ", items.currency)
 
 # Reload
 func _on_shoot_timer_timeout():
