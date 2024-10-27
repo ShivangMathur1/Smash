@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @export var BULLET: PackedScene = preload("res://Scenes/character_bullet.tscn")
 @export var SPARKS: PackedScene = preload("res://Scenes/Particles/Sparks.tscn")

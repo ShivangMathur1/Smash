@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://duwhbu2qal0t7"]
+
+[ext_resource type="PackedScene" uid="uid://dnlfjdsame2im" path="res://Scenes/Composites/Pickbox.tscn" id="1_7vopp"]
+[ext_resource type="Script" path="res://Item.gd" id="2_db1hw"]
+[ext_resource type="Texture2D" uid="uid://ceed2i2ut4r2j" path="res://Assets/Tilesets/four-seasons-tileset.png" id="3_x0dcf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gbnhl"]
+bounce = 0.3
+
+[sub_resource type="Resource" id="Resource_50y86"]
+script = ExtResource("2_db1hw")
+currency = 1
+health = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4aoot"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ujxm"]
+radius = 8.0
+
+[node name="Coin" type="RigidBody2D"]
+collision_layer = 64
+collision_mask = 10
+physics_material_override = SubResource("PhysicsMaterial_gbnhl")
+
+[node name="Pickbox" parent="." instance=ExtResource("1_7vopp")]
+items = SubResource("Resource_50y86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickbox"]
+shape = SubResource("CircleShape2D_4aoot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3ujxm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_x0dcf")
+hframes = 11
+vframes = 16
+frame = 150
