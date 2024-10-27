@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://dbg53f6pj2kkc"]
+
+[ext_resource type="Script" path="res://Scripts/crawl.gd" id="1_jvw88"]
+[ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Scenes/Composites/Hitbox.tscn" id="2_gouug"]
+[ext_resource type="Script" path="res://Scripts/Attack.gd" id="3_nw2k3"]
+[ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Composites/Hurtbox.tscn" id="4_hhjq6"]
+[ext_resource type="PackedScene" uid="uid://c8bwem75fa8i8" path="res://Scenes/Composites/Health.tscn" id="5_3c2gb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hsk7h"]
+size = Vector2(17, 17)
+
+[sub_resource type="Resource" id="Resource_swqjs"]
+script = ExtResource("3_nw2k3")
+damage = 1.0
+force = 120.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qr2oo"]
+size = Vector2(17, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swbso"]
+size = Vector2(17, 17)
+
+[node name="Crawler" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 10
+script = ExtResource("1_jvw88")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -9.0
+offset_right = 9.0
+offset_bottom = 8.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_hsk7h")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_gouug")]
+collision_mask = 1
+attack = SubResource("Resource_swqjs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_qr2oo")
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_hhjq6")]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_swbso")
+
+[node name="Health" parent="." instance=ExtResource("5_3c2gb")]
+maxHealth = 2
+
+[node name="EdgeDetector" type="RayCast2D" parent="."]
+target_position = Vector2(0, 10)
+collision_mask = 10
+
+[connection signal="take_damage" from="Hurtbox" to="." method="_on_hurtbox_take_damage"]
+[connection signal="death" from="Health" to="." method="_on_health_death"]
