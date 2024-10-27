@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://ii2tidv1xpbt"]
+
+[ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Scenes/Composites/Hitbox.tscn" id="1_41yu8"]
+[ext_resource type="Script" path="res://Scripts/follower.gd" id="1_a7r5q"]
+[ext_resource type="Script" path="res://Scripts/Attack.gd" id="2_qiyc7"]
+[ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Composites/Hurtbox.tscn" id="3_rk767"]
+[ext_resource type="PackedScene" uid="uid://c8bwem75fa8i8" path="res://Scenes/Composites/Health.tscn" id="4_vfoxk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snvpu"]
+size = Vector2(16, 16)
+
+[sub_resource type="Resource" id="Resource_ada3k"]
+script = ExtResource("2_qiyc7")
+damage = 1.0
+force = 120.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yoixp"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ylugp"]
+size = Vector2(16, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_acsdc"]
+radius = 24.0
+height = 160.0
+
+[node name="follower" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 10
+script = ExtResource("1_a7r5q")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+color = Color(0, 1, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_snvpu")
+
+[node name="Hitbox" parent="." instance=ExtResource("1_41yu8")]
+collision_mask = 1
+attack = SubResource("Resource_ada3k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_yoixp")
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_rk767")]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_ylugp")
+
+[node name="Health" parent="." instance=ExtResource("4_vfoxk")]
+maxHealth = 2
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_acsdc")
+
+[node name="FollowCooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="take_damage" from="Hurtbox" to="." method="_on_hurtbox_take_damage"]
+[connection signal="death" from="Health" to="." method="_on_health_death"]
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
+[connection signal="timeout" from="FollowCooldown" to="." method="_on_follow_cooldown_timeout"]
