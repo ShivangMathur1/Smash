@@ -1,12 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnlfjdsame2im"]
+[gd_scene load_steps=2 format=3 uid="uid://cecwwpdtewcfh"]
 
-[ext_resource type="Script" path="res://Scripts/pickbox.gd" id="1_bydtq"]
+[ext_resource type="Script" path="res://Scripts/pickbox.gd" id="1_du3ur"]
 
 [node name="Pickbox" type="Area2D"]
-editor_description = "They get picked"
 collision_layer = 0
-input_pickable = false
 monitorable = false
-script = ExtResource("1_bydtq")
+script = ExtResource("1_du3ur")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,4 +1,5 @@
 class_name Pickbox2D extends Area2D
+
 @export var items: Item
 
 
