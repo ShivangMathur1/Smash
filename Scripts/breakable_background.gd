@@ -3,6 +3,7 @@ extends Sprite2D
 @onready var hurtbox_2d: Hurtbox2D = $Hurtbox2D
 
 @export var live_frame: int
+@export var remove_on_death: bool
 @export var death_frame: int
 
 func _ready() -> void:
@@ -13,4 +14,7 @@ func _on_hurtbox_2d_take_damage(attack: Attack) -> void:
 	explosion.position = global_position
 	add_sibling(explosion)
 	hurtbox_2d.queue_free()
-	frame = death_frame
+	if remove_on_death:
+		queue_free()
+	else:
+		frame = death_frame
