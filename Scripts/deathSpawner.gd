@@ -1,5 +1,5 @@
 extends Node2D
-@export var items: Item
+@export var items: Items
 
 const COIN = preload("res://Scenes/coin.tscn")
 

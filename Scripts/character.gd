@@ -8,9 +8,11 @@ class_name Player extends CharacterBody2D
 @onready var dash_timer = $DashTimer
 @onready var horizontal_control_timer: Timer = $HorizontalControlTimer
 @onready var invincibility_timer: Timer = $InvincibilityTimer
-@onready var label = $CanvasLayer/Label
+@onready var ammo_label = $CanvasLayer/AmmoLabel
+@onready var currency_label: Label = $CanvasLayer/CurrencyLabel
 @onready var health: Health = $Health
 @onready var hurtbox: Hurtbox2D = $Hurtbox
+@onready var inventory: Inventory = $Inventory
 
 const SPEED = 200.0
 const JUMP_VELOCITY = -500.0
@@ -32,7 +34,8 @@ var facing = 1.0
 
 func _ready():
 	ammo = AMMO_CAPACITY
-	label.text = str(ammo)
+	ammo_label.text = str(ammo)
+	currency_label.text = "0"
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -119,10 +122,10 @@ func _physics_process(delta):
 		can_shoot = false
 		if ammo <= 0:
 			shoot_timer.start(2)
-			label.text = "reloading..."
+			ammo_label.text = "reloading..."
 		else:
 			shoot_timer.start(0.1)
-			label.text = str(ammo)
+			ammo_label.text = str(ammo)
 	
 	move_and_slide()
 
@@ -140,15 +143,18 @@ func play_particle(particle, direction):
 	instance.direction = direction
 	add_child(instance)
 
-func collect(items: Item):
-	print("Money: ", items.currency)
+func collect(items: Items):
+	inventory.collect(items)
+	if items.health > 0:
+		health.heal(items.health)
+	currency_label.text = str(inventory.inventory_items.currency)
 
 # Reload
 func _on_shoot_timer_timeout():
 	can_shoot = true
 	if ammo <= 0:
 		ammo = AMMO_CAPACITY
-		label.text = str(ammo)
+		ammo_label.text = str(ammo)
 
 func _on_dash_timer_timeout():
 	if can_dash == Enums.dash_states.dashing:

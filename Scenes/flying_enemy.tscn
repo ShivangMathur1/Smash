@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cugeqrxbbu65h"]
+[gd_scene load_steps=13 format=3 uid="uid://cugeqrxbbu65h"]
 
 [ext_resource type="Script" path="res://Scripts/flying_enemy.gd" id="1_n0e8m"]
 [ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Scenes/Composites/Hitbox.tscn" id="2_fvh75"]
 [ext_resource type="PackedScene" uid="uid://c8bwem75fa8i8" path="res://Scenes/Composites/Health.tscn" id="3_2aki0"]
 [ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Composites/Hurtbox.tscn" id="4_cn2es"]
+[ext_resource type="Script" path="res://Scripts/Attack.gd" id="5_0l7wd"]
+[ext_resource type="PackedScene" uid="uid://csb2e6bf3mo17" path="res://Scenes/Composites/death_spawner.tscn" id="5_48hw0"]
+[ext_resource type="Script" path="res://Item.gd" id="6_eon3t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eno3b"]
 size = Vector2(40, 40)
@@ -11,8 +14,18 @@ size = Vector2(40, 40)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c6fy4"]
 size = Vector2(40, 40)
 
+[sub_resource type="Resource" id="Resource_tn5t8"]
+script = ExtResource("5_0l7wd")
+damage = 2.0
+force = 200.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4tq6"]
 size = Vector2(15, 30)
+
+[sub_resource type="Resource" id="Resource_fxwrs"]
+script = ExtResource("6_eon3t")
+currency = 5
+health = 0.0
 
 [node name="FlyingEnemy" type="CharacterBody2D"]
 collision_layer = 16
@@ -30,6 +43,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 
 [node name="Health" parent="." instance=ExtResource("3_2aki0")]
+maxHealth = 5
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_cn2es")]
 collision_layer = 16
@@ -39,11 +53,14 @@ shape = SubResource("RectangleShape2D_c6fy4")
 
 [node name="Hitbox" parent="." instance=ExtResource("2_fvh75")]
 collision_mask = 1
-damage = 1.0
+attack = SubResource("Resource_tn5t8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-19.5, 0)
 shape = SubResource("RectangleShape2D_a4tq6")
+
+[node name="DeathSpawner" parent="." instance=ExtResource("5_48hw0")]
+items = SubResource("Resource_fxwrs")
 
 [connection signal="death" from="Health" to="." method="_on_health_death"]
 [connection signal="take_damage" from="Hurtbox" to="." method="_on_hurtbox_take_damage"]

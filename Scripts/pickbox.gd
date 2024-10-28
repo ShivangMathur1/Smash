@@ -1,6 +1,6 @@
 class_name Pickbox2D extends Area2D
 
-@export var items: Item
+@export var items: Items
 
 
 func _on_body_entered(body: Player) -> void:
