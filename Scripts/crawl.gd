@@ -28,9 +28,4 @@ func _on_health_death() -> void:
 	explosion.position = global_position
 	add_sibling(explosion)
 	
-	var coin: RigidBody2D  = COIN.instantiate()
-	coin.position = global_position
-	coin.apply_impulse(Vector2(0, 100))
-	add_sibling(coin)
-	
 	queue_free()

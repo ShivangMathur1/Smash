@@ -176,5 +176,3 @@ func _on_hurtbox_take_damage(attack: Attack) -> void:
 
 func _on_invincibility_timer_timeout() -> void:
 	hurtbox.set_deferred("monitorable", true) 
-
-	print("vincinble", hurtbox.monitorable)
