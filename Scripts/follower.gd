@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var EXPLOSION: PackedScene = preload("res://Scenes/Particles/explosion.tscn")
 @export var COIN: PackedScene = preload("res://Scenes/coin.tscn")
-
+@export var threshold = 8
 @onready var health: Health = $Health
 @onready var follow_cooldown: Timer = $FollowCooldown
 
@@ -16,8 +16,11 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	if follow_target != null:
-		velocity.x = sign(follow_target.global_position.x - global_position.x) * SPEED
-	else: velocity.x = 0
+		var displacement = follow_target.global_position.x - global_position.x
+		if abs(displacement) > threshold:
+			velocity.x = sign(displacement) * SPEED
+	else:
+		velocity.x = 0
 	
 	move_and_slide()
 

@@ -12,7 +12,7 @@ size = Vector2(17, 17)
 [sub_resource type="Resource" id="Resource_swqjs"]
 script = ExtResource("3_nw2k3")
 damage = 1.0
-force = 120.0
+force = 200.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qr2oo"]
 size = Vector2(17, 17)
