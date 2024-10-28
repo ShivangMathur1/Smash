@@ -21,25 +21,17 @@ script = ExtResource("1_28gla")
 position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_rh7ij")
 
-[node name="ShootTimer" type="Timer" parent="."]
-one_shot = true
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="DashTimer" type="Timer" parent="."]
-one_shot = true
-
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -4.0
 offset_top = -4.0
 offset_right = 4.0
 offset_bottom = 14.0
-
-[node name="HorizontalControlTimer" type="Timer" parent="."]
 
 [node name="Health" parent="." instance=ExtResource("2_5qa7e")]
 
@@ -50,8 +42,19 @@ collision_layer = 1
 position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_2o1yp")
 
-[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
-[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
-[connection signal="timeout" from="HorizontalControlTimer" to="." method="_on_horizontal_control_timer_timeout"]
+[node name="InvincibilityTimer" type="Timer" parent="."]
+
+[node name="DashTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HorizontalControlTimer" type="Timer" parent="."]
+
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="death" from="Health" to="." method="_on_health_death"]
 [connection signal="take_damage" from="Hurtbox" to="." method="_on_hurtbox_take_damage"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="HorizontalControlTimer" to="." method="_on_horizontal_control_timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

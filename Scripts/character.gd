@@ -7,8 +7,10 @@ class_name Player extends CharacterBody2D
 @onready var shoot_timer = $ShootTimer
 @onready var dash_timer = $DashTimer
 @onready var horizontal_control_timer: Timer = $HorizontalControlTimer
+@onready var invincibility_timer: Timer = $InvincibilityTimer
 @onready var label = $CanvasLayer/Label
 @onready var health: Health = $Health
+@onready var hurtbox: Hurtbox2D = $Hurtbox
 
 const SPEED = 200.0
 const JUMP_VELOCITY = -500.0
@@ -160,7 +162,19 @@ func _on_health_death() -> void:
 
 func _on_hurtbox_take_damage(attack: Attack) -> void:
 	health.take_damage(attack)
+	velocity = attack.direction * attack.force
+	hurtbox.set_deferred("monitorable", false)
+	invincibility_timer.start(1.5)
+	horizontal_control = false
+	horizontal_control_timer.start(0.4)
 
 
 # Coyote time
 # bullet spark direction
+# Jump buffering
+# Handle can dash can jump with animations
+
+func _on_invincibility_timer_timeout() -> void:
+	hurtbox.set_deferred("monitorable", true) 
+
+	print("vincinble", hurtbox.monitorable)

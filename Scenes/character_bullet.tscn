@@ -1,11 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dty08x2mweo2q"]
+[gd_scene load_steps=7 format=3 uid="uid://dty08x2mweo2q"]
 
 [ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_4l86x"]
 [ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Scenes/Composites/Hitbox.tscn" id="2_if5rm"]
+[ext_resource type="Script" path="res://Scripts/Attack.gd" id="3_0letv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kwdur"]
 radius = 2.0
 height = 8.0
+
+[sub_resource type="Resource" id="Resource_bca02"]
+script = ExtResource("3_0letv")
+damage = 1.0
+force = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8klmj"]
 radius = 2.0
@@ -31,6 +37,7 @@ shape = SubResource("CapsuleShape2D_kwdur")
 
 [node name="Hitbox" parent="." instance=ExtResource("2_if5rm")]
 collision_mask = 24
+attack = SubResource("Resource_bca02")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 rotation = 1.5708
