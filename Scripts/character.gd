@@ -187,6 +187,7 @@ func _on_hurtbox_take_damage(attack: Attack) -> void:
 # bullet spark direction
 # Jump buffering
 # Handle can dash can jump with animations
+# add HUD and menus
 
 func _on_invincibility_timer_timeout() -> void:
 	hurtbox.set_deferred("monitorable", true) 

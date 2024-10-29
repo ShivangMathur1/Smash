@@ -256,15 +256,21 @@ remove_on_death = true
 death_frame = 0
 
 [node name="Crawler" parent="." instance=ExtResource("7_kpss2")]
-position = Vector2(1216, 112)
+position = Vector2(1184, 112)
 
-[node name="Crawler3" parent="." instance=ExtResource("7_kpss2")]
-position = Vector2(728, -64)
-
-[node name="Crawler4" parent="." instance=ExtResource("7_kpss2")]
-position = Vector2(2296, -896)
+[node name="Crawler2" parent="." instance=ExtResource("7_kpss2")]
+position = Vector2(768, -144)
 
 [node name="follower" parent="." instance=ExtResource("8_28v0p")]
-position = Vector2(48, 176)
+position = Vector2(1176, -384)
+
+[node name="Crawler3" parent="." instance=ExtResource("7_kpss2")]
+position = Vector2(1504, -992)
+
+[node name="Crawler4" parent="." instance=ExtResource("7_kpss2")]
+position = Vector2(1384, -992)
+
+[node name="follower2" parent="." instance=ExtResource("8_28v0p")]
+position = Vector2(1968, -1280)
 
 [connection signal="body_entered" from="LevelSwitch" to="LevelSwitch" method="_on_body_entered"]
