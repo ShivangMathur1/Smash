@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkps00weh2q5b"]
+
+[ext_resource type="Texture2D" uid="uid://pevh6ar2plu4" path="res://Assets/Sprites/attack.png" id="1_oudx0"]
+[ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Scenes/Composites/hitbox.tscn" id="2_cjdlr"]
+[ext_resource type="Script" path="res://Scripts/attack.gd" id="3_7j1cc"]
+
+[sub_resource type="Resource" id="Resource_e07sb"]
+script = ExtResource("3_7j1cc")
+damage = 2.0
+force = 120.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iadkk"]
+radius = 33.0151
+
+[node name="Attack" type="Sprite2D"]
+visible = false
+texture = ExtResource("1_oudx0")
+flip_h = true
+flip_v = true
+hframes = 2
+
+[node name="Hitbox" parent="." instance=ExtResource("2_cjdlr")]
+collision_mask = 24
+attack = SubResource("Resource_e07sb")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(16, 1)
+shape = SubResource("CircleShape2D_iadkk")
+disabled = true

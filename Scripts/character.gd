@@ -13,6 +13,8 @@ class_name Player extends CharacterBody2D
 @onready var health: Health = $Health
 @onready var hurtbox: Hurtbox2D = $Hurtbox
 @onready var inventory: Inventory = $Inventory
+@onready var attack: Sprite2D = $Attack
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 const SPEED = 200.0
 const JUMP_VELOCITY = -500.0
@@ -126,6 +128,12 @@ func _physics_process(delta):
 		else:
 			shoot_timer.start(0.1)
 			ammo_label.text = str(ammo)
+	
+	if Input.is_action_just_pressed("melee"):
+		if facing > 0:
+			animation_player.play("attack_right")
+		else:
+			animation_player.play("attack_left")
 	
 	move_and_slide()
 
