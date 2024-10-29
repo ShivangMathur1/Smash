@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://dbg53f6pj2kkc"]
 
 [ext_resource type="Script" path="res://Scripts/crawl.gd" id="1_jvw88"]
-[ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Scenes/Composites/Hitbox.tscn" id="2_gouug"]
-[ext_resource type="Script" path="res://Scripts/Attack.gd" id="3_nw2k3"]
-[ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Composites/Hurtbox.tscn" id="4_hhjq6"]
-[ext_resource type="PackedScene" uid="uid://c8bwem75fa8i8" path="res://Scenes/Composites/Health.tscn" id="5_3c2gb"]
+[ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Scenes/Composites/hitbox.tscn" id="2_gouug"]
+[ext_resource type="Script" path="res://Scripts/attack.gd" id="3_nw2k3"]
+[ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Composites/hurtbox.tscn" id="4_hhjq6"]
+[ext_resource type="PackedScene" uid="uid://c8bwem75fa8i8" path="res://Scenes/Composites/health.tscn" id="5_3c2gb"]
 [ext_resource type="PackedScene" uid="uid://csb2e6bf3mo17" path="res://Scenes/Composites/death_spawner.tscn" id="6_oy2in"]
 [ext_resource type="Script" path="res://Item.gd" id="7_76vet"]
 

@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
 @export var BULLET: PackedScene = preload("res://Scenes/character_bullet.tscn")
-@export var SPARKS: PackedScene = preload("res://Scenes/Particles/Sparks.tscn")
+@export var SPARKS: PackedScene = preload("res://Scenes/Particles/sparks.tscn")
 @export var DASH_CLOUD: PackedScene = preload("res://Scenes/Particles/dash_cloud.tscn")
 
 @onready var shoot_timer = $ShootTimer

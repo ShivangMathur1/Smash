@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://duwhbu2qal0t7"]
 
 [ext_resource type="Script" path="res://Item.gd" id="2_db1hw"]
-[ext_resource type="PackedScene" uid="uid://cecwwpdtewcfh" path="res://Scenes/Composites/Pickbox.tscn" id="2_k2yqb"]
+[ext_resource type="PackedScene" uid="uid://cecwwpdtewcfh" path="res://Scenes/Composites/pickbox.tscn" id="2_k2yqb"]
 [ext_resource type="Texture2D" uid="uid://ceed2i2ut4r2j" path="res://Assets/Tilesets/four-seasons-tileset.png" id="3_x0dcf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gbnhl"]

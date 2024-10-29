@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var death_timer = $DeathTimer
 
 @export var BULLET_SPEED = 800
-@export var SPARKS: PackedScene = preload("res://Scenes/Particles/Sparks.tscn")
+@export var SPARKS: PackedScene = preload("res://Scenes/Particles/sparks.tscn")
 
 var direction = Vector2.RIGHT
 
