@@ -4,7 +4,11 @@
 
 [node name="Pickbox" type="Area2D"]
 collision_layer = 0
+monitoring = false
 monitorable = false
 script = ExtResource("1_du3ur")
 
+[node name="PickableTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="PickableTimer" to="." method="_on_pickable_timer_timeout"]
