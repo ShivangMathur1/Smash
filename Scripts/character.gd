@@ -180,7 +180,7 @@ func _on_hurtbox_take_damage(attack: Attack) -> void:
 	hurtbox.set_deferred("monitorable", false)
 	invincibility_timer.start(1.5)
 	horizontal_control = false
-	horizontal_control_timer.start(0.4)
+	horizontal_control_timer.start(0.2)
 
 
 # Coyote time

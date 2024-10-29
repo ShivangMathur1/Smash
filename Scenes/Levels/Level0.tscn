@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://c4fjjbf5jsv2f"]
+[gd_scene load_steps=13 format=4 uid="uid://c4fjjbf5jsv2f"]
 
 [ext_resource type="PackedScene" uid="uid://c02s7yf50nmet" path="res://Scenes/character.tscn" id="1_rna2m"]
 [ext_resource type="Texture2D" uid="uid://ceed2i2ut4r2j" path="res://Assets/Tilesets/four-seasons-tileset.png" id="2_hxsda"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://g74siw6yatg8" path="res://Scenes/fungus_yellow_breakable_big.tscn" id="6_hnxl3"]
 [ext_resource type="PackedScene" uid="uid://dbg53f6pj2kkc" path="res://Scenes/crawler.tscn" id="7_kpss2"]
 [ext_resource type="PackedScene" uid="uid://ii2tidv1xpbt" path="res://Scenes/follower.tscn" id="8_28v0p"]
+[ext_resource type="PackedScene" uid="uid://dxlpf7kpayj4r" path="res://Scenes/coin_stash.tscn" id="9_k3mkv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sg8ic"]
 texture = ExtResource("2_hxsda")
@@ -272,5 +273,12 @@ position = Vector2(1384, -992)
 
 [node name="follower2" parent="." instance=ExtResource("8_28v0p")]
 position = Vector2(1968, -1280)
+
+[node name="CoinStash" parent="." instance=ExtResource("9_k3mkv")]
+position = Vector2(656, 16)
+
+[node name="CoinStash2" parent="." instance=ExtResource("9_k3mkv")]
+position = Vector2(480, -976)
+rotation = 4.71239
 
 [connection signal="body_entered" from="LevelSwitch" to="LevelSwitch" method="_on_body_entered"]
