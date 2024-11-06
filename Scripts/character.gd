@@ -1,11 +1,41 @@
 class_name Player extends CharacterBody2D
 
-@export var BULLET: PackedScene = preload("res://Scenes/character_bullet.tscn")
+
+@export var SPEED = 200.0
+@export var TERMINAL_VELOCITY = Vector2(800, 800)
+@export var hit_invincibility_time = 1.5
+@export var hit_control_loss_time = 0.2
+
+@export_group("Jumping")
+@export var jump_state = Enums.jump_states.cannot_jump
 @export var SPARKS: PackedScene = preload("res://Scenes/Particles/sparks.tscn")
+@export var JUMP_VELOCITY = -500.0
+@export var coyote_time = 0.05
+
+@export_group("Wall Jumping")
+@export var can_wall_jump = false
+@export var WALL_JUMP_VELOCITY = Vector2(200, -400)
+@export var WALL_SLIDE_VELOCITY = 100
+@export var wall_jump_control_loss_time = 0.2
+
+@export_group("Dashing")
+@export var dash_state = Enums.dash_states.cannot_dash
 @export var DASH_CLOUD: PackedScene = preload("res://Scenes/Particles/dash_cloud.tscn")
+@export var DASH_SPEED = 600
+@export var dash_time = 0.4
+@export var dash_control_loss_time = 0.1
+
+@export_group("Shooting")
+@export var can_shoot = true
+@export var BULLET: PackedScene = preload("res://Scenes/character_bullet.tscn")
+@export var AMMO_CAPACITY = 12
+@export var shoot_time = 0.1
+@export var shoot_reload_time = 2
+
 
 @onready var shoot_timer = $ShootTimer
 @onready var dash_timer = $DashTimer
+@onready var coyote_timer: Timer = $CoyoteTimer
 @onready var horizontal_control_timer: Timer = $HorizontalControlTimer
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 @onready var ammo_label = $CanvasLayer/AmmoLabel
@@ -16,20 +46,8 @@ class_name Player extends CharacterBody2D
 @onready var attack: Sprite2D = $Attack
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-const SPEED = 200.0
-const JUMP_VELOCITY = -500.0
-const DASH_SPEED = 600
-const WALL_JUMP_VELOCITY = Vector2(200, -400)
-const WALL_SLIDE_VELOCITY = 100
-const TERMINAL_VELOCITY = Vector2(800, 800)
-const AMMO_CAPACITY = 12
-
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 var horizontal_control = true
-var can_shoot = true
-var can_dash = Enums.dash_states.cannot_dash
-var can_wall_jump = false
 var ammo
 
 var facing = 1.0
@@ -38,30 +56,40 @@ func _ready():
 	ammo = AMMO_CAPACITY
 	ammo_label.text = str(ammo)
 	currency_label.text = "0"
+	dash_state = Enums.dash_states.cannot_dash
+	jump_state = Enums.jump_states.cannot_jump
 
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += air_gravity_values() * gravity * delta
+		if jump_state == Enums.jump_states.can_jump:
+			jump_state = Enums.jump_states.coyote_time
+			coyote_timer.start(coyote_time)
 		
 		# Perform a wall sLide
 		if can_wall_jump and is_on_wall() and velocity.y > WALL_SLIDE_VELOCITY:
 			velocity.y = move_toward(velocity.y, WALL_SLIDE_VELOCITY, 100)
-		if can_dash == Enums.dash_states.dashing:
+		if dash_state == Enums.dash_states.dashing:
 			velocity.y = 0
-
+	else:
+		jump_state = Enums.jump_states.can_jump
 
 	# Handle jump and wall jump
 	if Input.is_action_just_pressed("jump"):
-		if is_on_floor():
+		if (is_on_floor() and jump_state == Enums.jump_states.can_jump) or jump_state ==  Enums.jump_states.coyote_time:
+			jump_state = Enums.jump_states.jumping
 			velocity.y = JUMP_VELOCITY
 			play_particle(SPARKS, Vector2(0, 1))
 		elif is_on_wall() and can_wall_jump:
+			jump_state = Enums.jump_states.wall_jumping
 			velocity = WALL_JUMP_VELOCITY
 			velocity.x *= get_wall_normal().x
 			horizontal_control = false
-			horizontal_control_timer.start(0.2)
+			horizontal_control_timer.start(wall_jump_control_loss_time)
 			play_particle(SPARKS, Vector2(1, -get_wall_normal().x).normalized())
+	
+	
 
 
 	# Handle variable jump height (early release)
@@ -77,23 +105,23 @@ func _physics_process(delta):
 		facing = get_wall_normal().x
 	
 	# Handle dashing
-	if Input.is_action_just_pressed("dash") and can_dash == Enums.dash_states.can_dash:
+	if Input.is_action_just_pressed("dash") and dash_state == Enums.dash_states.can_dash:
 		velocity.x = DASH_SPEED * facing
 		velocity.y = 0
 		horizontal_control = false
-		horizontal_control_timer.start(0.1)
-		can_dash = Enums.dash_states.dashing
-		dash_timer.start(0.4)
+		horizontal_control_timer.start(dash_control_loss_time)
+		dash_state = Enums.dash_states.dashing
+		dash_timer.start(dash_time)
 		play_particle(DASH_CLOUD, Vector2(-facing, 0))
 	
 	# Reset dash if wall jumped or jumped
 	if is_on_floor() or (can_wall_jump and is_on_wall()):
-		if can_dash == Enums.dash_states.has_dashed:
-			can_dash = Enums.dash_states.can_dash
+		if dash_state == Enums.dash_states.has_dashed:
+			dash_state = Enums.dash_states.can_dash
 	
 	# Stop dashing if hit wall
-	if is_on_wall() and can_dash == Enums.dash_states.dashing:
-		can_dash = Enums.dash_states.has_dashed
+	if is_on_wall() and dash_state == Enums.dash_states.dashing:
+		dash_state = Enums.dash_states.has_dashed
 	
 	
 	# Handle the movement/deceleration.
@@ -123,10 +151,10 @@ func _physics_process(delta):
 		ammo -= 1
 		can_shoot = false
 		if ammo <= 0:
-			shoot_timer.start(2)
+			shoot_timer.start(shoot_reload_time)
 			ammo_label.text = "reloading..."
 		else:
-			shoot_timer.start(0.1)
+			shoot_timer.start(shoot_time)
 			ammo_label.text = str(ammo)
 	
 	if Input.is_action_just_pressed("melee"):
@@ -134,7 +162,6 @@ func _physics_process(delta):
 			animation_player.play("attack_right")
 		else:
 			animation_player.play("attack_left")
-	
 	move_and_slide()
 
 # Handle slow rise, hang time and fast descend for jumps
@@ -165,8 +192,8 @@ func _on_shoot_timer_timeout():
 		ammo_label.text = str(ammo)
 
 func _on_dash_timer_timeout():
-	if can_dash == Enums.dash_states.dashing:
-		can_dash = Enums.dash_states.has_dashed
+	if dash_state == Enums.dash_states.dashing:
+		dash_state = Enums.dash_states.has_dashed
 
 func _on_horizontal_control_timer_timeout() -> void:
 	horizontal_control = true
@@ -178,16 +205,19 @@ func _on_hurtbox_take_damage(attack: Attack) -> void:
 	health.take_damage(attack)
 	velocity = attack.direction * attack.force
 	hurtbox.set_deferred("monitorable", false)
-	invincibility_timer.start(1.5)
+	invincibility_timer.start(hit_invincibility_time)
 	horizontal_control = false
 	horizontal_control_timer.start(0.2)
 
+func _on_invincibility_timer_timeout() -> void:
+	hurtbox.set_deferred("monitorable", true)
 
-# Coyote time
+func _on_coyote_timer_timeout() -> void:
+	if jump_state == Enums.jump_states.coyote_time:
+		jump_state = Enums.jump_states.jumping
+
 # bullet spark direction
 # Jump buffering
 # Handle can dash can jump with animations
 # add HUD and menus
-
-func _on_invincibility_timer_timeout() -> void:
-	hurtbox.set_deferred("monitorable", true) 
+# Composite knockback

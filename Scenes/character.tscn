@@ -265,6 +265,9 @@ shape = SubResource("CapsuleShape2D_2o1yp")
 [node name="DashTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="CoyoteTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="HorizontalControlTimer" type="Timer" parent="."]
 
 [node name="ShootTimer" type="Timer" parent="."]
@@ -293,5 +296,6 @@ libraries = {
 [connection signal="death" from="Health" to="." method="_on_health_death"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="HorizontalControlTimer" to="." method="_on_horizontal_control_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

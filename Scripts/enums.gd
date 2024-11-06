@@ -6,3 +6,11 @@ enum dash_states{
 	dashing,
 	has_dashed
 }
+
+enum jump_states{
+	cannot_jump,
+	can_jump,
+	coyote_time,
+	jumping,
+	wall_jumping
+}
