@@ -183,6 +183,12 @@ func collect(items: Items):
 	if items.health > 0:
 		health.heal(items.health)
 	currency_label.text = str(inventory.inventory_items.currency)
+	if inventory.buffer.currency > 0:
+		currency_label.text +=  " + " + str(inventory.buffer.currency)
+
+
+func _on_inventory_collected() -> void:
+	currency_label.text = str(inventory.inventory_items.currency)
 
 # Reload
 func _on_shoot_timer_timeout():
@@ -207,7 +213,7 @@ func _on_hurtbox_take_damage(attack: Attack) -> void:
 	hurtbox.set_deferred("monitorable", false)
 	invincibility_timer.start(hit_invincibility_time)
 	horizontal_control = false
-	horizontal_control_timer.start(0.2)
+	horizontal_control_timer.start(hit_control_loss_time)
 
 func _on_invincibility_timer_timeout() -> void:
 	hurtbox.set_deferred("monitorable", true)
@@ -217,7 +223,6 @@ func _on_coyote_timer_timeout() -> void:
 		jump_state = Enums.jump_states.jumping
 
 # bullet spark direction
-# Jump buffering
 # Handle can dash can jump with animations
 # add HUD and menus
 # Composite knockback

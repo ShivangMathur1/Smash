@@ -4,3 +4,8 @@
 
 [node name="Inventory" type="Node"]
 script = ExtResource("1_mauws")
+
+[node name="CollectTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="CollectTimer" to="." method="_on_collect_timer_timeout"]
