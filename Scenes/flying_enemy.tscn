@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://cugeqrxbbu65h"]
 
 [ext_resource type="Script" path="res://Scripts/flying_enemy.gd" id="1_n0e8m"]
-[ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Scenes/Composites/hitbox.tscn" id="2_fvh75"]
-[ext_resource type="PackedScene" uid="uid://c8bwem75fa8i8" path="res://Scenes/Composites/health.tscn" id="3_2aki0"]
-[ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Composites/hurtbox.tscn" id="4_cn2es"]
+[ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Scenes/Composites/Hitbox.tscn" id="2_fvh75"]
+[ext_resource type="PackedScene" uid="uid://c8bwem75fa8i8" path="res://Scenes/Composites/Health.tscn" id="3_2aki0"]
+[ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Composites/Hurtbox.tscn" id="4_cn2es"]
 [ext_resource type="Script" path="res://Scripts/attack.gd" id="5_0l7wd"]
 [ext_resource type="PackedScene" uid="uid://csb2e6bf3mo17" path="res://Scenes/Composites/death_spawner.tscn" id="5_48hw0"]
 [ext_resource type="Script" path="res://Item.gd" id="6_eon3t"]
@@ -20,7 +20,7 @@ damage = 2.0
 force = 200.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4tq6"]
-size = Vector2(15, 30)
+size = Vector2(40, 40)
 
 [sub_resource type="Resource" id="Resource_fxwrs"]
 script = ExtResource("6_eon3t")
@@ -56,7 +56,6 @@ collision_mask = 1
 attack = SubResource("Resource_tn5t8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-19.5, 0)
 shape = SubResource("RectangleShape2D_a4tq6")
 
 [node name="DeathSpawner" parent="." instance=ExtResource("5_48hw0")]

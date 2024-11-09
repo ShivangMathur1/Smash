@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c02s7yf50nmet" path="res://Scenes/character.tscn" id="1_rna2m"]
 [ext_resource type="Texture2D" uid="uid://ceed2i2ut4r2j" path="res://Assets/Tilesets/four-seasons-tileset.png" id="2_hxsda"]
 [ext_resource type="PackedScene" uid="uid://bsnn7lp0o7igw" path="res://Scenes/Composites/level_switch.tscn" id="3_xxvjf"]
-[ext_resource type="PackedScene" uid="uid://tsefbhs1ve0u" path="res://Scenes/Levels/level1.tscn" id="4_75xyr"]
+[ext_resource type="PackedScene" uid="uid://tsefbhs1ve0u" path="res://Scenes/Levels/Level1.tscn" id="4_75xyr"]
 [ext_resource type="PackedScene" uid="uid://cugeqrxbbu65h" path="res://Scenes/flying_enemy.tscn" id="5_smedj"]
 [ext_resource type="PackedScene" uid="uid://g74siw6yatg8" path="res://Scenes/fungus_yellow_breakable_big.tscn" id="6_hnxl3"]
 [ext_resource type="PackedScene" uid="uid://dbg53f6pj2kkc" path="res://Scenes/crawler.tscn" id="7_kpss2"]
@@ -226,10 +226,22 @@ position = Vector2(3674.18, 436.974)
 shape = SubResource("CircleShape2D_cdst8")
 
 [node name="FlyingEnemy" parent="." instance=ExtResource("5_smedj")]
-position = Vector2(1557, -579)
+position = Vector2(1663, -396)
 
 [node name="fungus_yellow_breakable_big" parent="." instance=ExtResource("6_hnxl3")]
 position = Vector2(592, 176)
+frame = 20
+
+[node name="fungus_yellow_breakable_big7" parent="." instance=ExtResource("6_hnxl3")]
+position = Vector2(48, 176)
+frame = 20
+
+[node name="fungus_yellow_breakable_big8" parent="." instance=ExtResource("6_hnxl3")]
+position = Vector2(32, 176)
+frame = 20
+
+[node name="fungus_yellow_breakable_big9" parent="." instance=ExtResource("6_hnxl3")]
+position = Vector2(-216, 176)
 frame = 20
 
 [node name="fungus_yellow_breakable_big2" parent="." instance=ExtResource("6_hnxl3")]

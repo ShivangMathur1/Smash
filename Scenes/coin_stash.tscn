@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ceed2i2ut4r2j" path="res://Assets/Tilesets/four-seasons-tileset.png" id="1_jqmaj"]
 [ext_resource type="Script" path="res://Scripts/coin_stash.gd" id="2_gdp6h"]
-[ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Composites/hurtbox.tscn" id="4_00upu"]
+[ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Composites/Hurtbox.tscn" id="4_00upu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdmta"]
 size = Vector2(14, 9)

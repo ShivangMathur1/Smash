@@ -226,3 +226,12 @@ func _on_coyote_timer_timeout() -> void:
 # Handle can dash can jump with animations
 # add HUD and menus
 # Composite knockback
+
+
+func _on_melee_attack_hitbox_hit(attack: Attack, collision_layer: int) -> void:
+	if not is_on_floor():
+		velocity.y = -80
+	if collision_layer == 16:
+		velocity.x = -attack.direction.x * 80
+		horizontal_control = false
+		horizontal_control_timer.start(0.1)
