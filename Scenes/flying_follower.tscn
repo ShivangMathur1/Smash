@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cugeqrxbbu65h"]
+[gd_scene load_steps=14 format=3 uid="uid://cugeqrxbbu65h"]
 
-[ext_resource type="Script" path="res://Scripts/flying_enemy.gd" id="1_n0e8m"]
-[ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Scenes/Composites/Hitbox.tscn" id="2_fvh75"]
-[ext_resource type="PackedScene" uid="uid://c8bwem75fa8i8" path="res://Scenes/Composites/Health.tscn" id="3_2aki0"]
-[ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Composites/Hurtbox.tscn" id="4_cn2es"]
+[ext_resource type="Script" path="res://Scripts/flying_follower.gd" id="1_n0e8m"]
+[ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Scenes/Composites/hitbox.tscn" id="2_fvh75"]
+[ext_resource type="PackedScene" uid="uid://c8bwem75fa8i8" path="res://Scenes/Composites/health.tscn" id="3_2aki0"]
+[ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Composites/hurtbox.tscn" id="4_cn2es"]
 [ext_resource type="Script" path="res://Scripts/attack.gd" id="5_0l7wd"]
 [ext_resource type="PackedScene" uid="uid://csb2e6bf3mo17" path="res://Scenes/Composites/death_spawner.tscn" id="5_48hw0"]
 [ext_resource type="Script" path="res://Item.gd" id="6_eon3t"]
@@ -27,7 +27,10 @@ script = ExtResource("6_eon3t")
 currency = 5
 health = 0.0
 
-[node name="FlyingEnemy" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ufkd"]
+radius = 192.0
+
+[node name="FlyingFollower" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_n0e8m")
@@ -61,5 +64,17 @@ shape = SubResource("RectangleShape2D_a4tq6")
 [node name="DeathSpawner" parent="." instance=ExtResource("5_48hw0")]
 items = SubResource("Resource_fxwrs")
 
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_2ufkd")
+
+[node name="FollowCooldown" type="Timer" parent="."]
+
 [connection signal="death" from="Health" to="." method="_on_health_death"]
 [connection signal="take_damage" from="Hurtbox" to="." method="_on_hurtbox_take_damage"]
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
+[connection signal="timeout" from="FollowCooldown" to="." method="_on_follow_cooldown_timeout"]

@@ -222,12 +222,6 @@ func _on_coyote_timer_timeout() -> void:
 	if jump_state == Enums.jump_states.coyote_time:
 		jump_state = Enums.jump_states.jumping
 
-# bullet spark direction
-# Handle can dash can jump with animations
-# add HUD and menus
-# Composite knockback
-
-
 func _on_melee_attack_hitbox_hit(attack: Attack, collision_layer: int) -> void:
 	if not is_on_floor():
 		velocity.y = -80
@@ -235,3 +229,8 @@ func _on_melee_attack_hitbox_hit(attack: Attack, collision_layer: int) -> void:
 		velocity.x = -attack.direction.x * 80
 		horizontal_control = false
 		horizontal_control_timer.start(0.1)
+
+# TODO: bullet spark direction
+# TODO: Handle can dash can jump with animations
+# TODO: add HUD and menus
+# TODO: Composite knockback

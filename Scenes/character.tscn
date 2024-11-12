@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://c02s7yf50nmet"]
 
 [ext_resource type="Script" path="res://Scripts/character.gd" id="1_28gla"]
-[ext_resource type="PackedScene" uid="uid://c8bwem75fa8i8" path="res://Scenes/Composites/Health.tscn" id="2_5qa7e"]
-[ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Composites/Hurtbox.tscn" id="3_h08kw"]
+[ext_resource type="PackedScene" uid="uid://c8bwem75fa8i8" path="res://Scenes/Composites/health.tscn" id="2_5qa7e"]
+[ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Composites/hurtbox.tscn" id="3_h08kw"]
 [ext_resource type="PackedScene" uid="uid://bq7oqjgk4ac4o" path="res://Scenes/Composites/inventory.tscn" id="4_boqra"]
 [ext_resource type="Texture2D" uid="uid://pevh6ar2plu4" path="res://Assets/Sprites/attack.png" id="5_nwk8n"]
-[ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Scenes/Composites/Hitbox.tscn" id="6_swowf"]
+[ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Scenes/Composites/hitbox.tscn" id="6_swowf"]
 [ext_resource type="Script" path="res://Scripts/attack.gd" id="7_wcw4a"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rh7ij"]

@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://c02s7yf50nmet" path="res://Scenes/character.tscn" id="1_rna2m"]
 [ext_resource type="Texture2D" uid="uid://ceed2i2ut4r2j" path="res://Assets/Tilesets/four-seasons-tileset.png" id="2_hxsda"]
 [ext_resource type="PackedScene" uid="uid://bsnn7lp0o7igw" path="res://Scenes/Composites/level_switch.tscn" id="3_xxvjf"]
-[ext_resource type="PackedScene" uid="uid://tsefbhs1ve0u" path="res://Scenes/Levels/Level1.tscn" id="4_75xyr"]
-[ext_resource type="PackedScene" uid="uid://cugeqrxbbu65h" path="res://Scenes/flying_enemy.tscn" id="5_smedj"]
+[ext_resource type="PackedScene" uid="uid://tsefbhs1ve0u" path="res://Scenes/Levels/level1.tscn" id="4_75xyr"]
+[ext_resource type="PackedScene" uid="uid://cugeqrxbbu65h" path="res://Scenes/flying_follower.tscn" id="5_smedj"]
 [ext_resource type="PackedScene" uid="uid://g74siw6yatg8" path="res://Scenes/fungus_yellow_breakable_big.tscn" id="6_hnxl3"]
 [ext_resource type="PackedScene" uid="uid://dbg53f6pj2kkc" path="res://Scenes/crawler.tscn" id="7_kpss2"]
 [ext_resource type="PackedScene" uid="uid://ii2tidv1xpbt" path="res://Scenes/follower.tscn" id="8_28v0p"]
@@ -292,5 +292,8 @@ position = Vector2(656, 16)
 [node name="CoinStash2" parent="." instance=ExtResource("9_k3mkv")]
 position = Vector2(480, -976)
 rotation = 4.71239
+
+[node name="FlyingEnemy2" parent="." instance=ExtResource("5_smedj")]
+position = Vector2(64, 32)
 
 [connection signal="body_entered" from="LevelSwitch" to="LevelSwitch" method="_on_body_entered"]
