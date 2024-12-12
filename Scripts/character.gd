@@ -242,3 +242,6 @@ func _on_melee_attack_hitbox_hit(attack: Attack, collision_layer: int) -> void:
 # TODO: add HUD and menus
 # TODO: Composite knockback
 # TODO: Remove fake knockback as well as uneccessary collision layer param for hitbox hit
+# TODO: Remove fake knockback as well as uneccessary collision layer param for hitbox hit
+# TODO: Sream line pause menu and UI by adding main node
+# TODO: Restructure filesystem to godot standard
