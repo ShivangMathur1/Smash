@@ -29,6 +29,6 @@ func spawn_sparks(direction: Vector2):
 func _on_death_timer_timeout():
 	queue_free()
 
-func _on_hitbox_hit() -> void:
+func _on_hitbox_hit(attack: Attack, collision_layer: int) -> void:
 	spawn_sparks(-direction)
 	queue_free()

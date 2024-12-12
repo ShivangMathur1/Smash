@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Scenes/Composites/hurtbox.tscn" id="4_hhjq6"]
 [ext_resource type="PackedScene" uid="uid://c8bwem75fa8i8" path="res://Scenes/Composites/health.tscn" id="5_3c2gb"]
 [ext_resource type="PackedScene" uid="uid://csb2e6bf3mo17" path="res://Scenes/Composites/death_spawner.tscn" id="6_oy2in"]
-[ext_resource type="Script" path="res://Item.gd" id="7_76vet"]
+[ext_resource type="Script" path="res://Scripts/Item.gd" id="7_76vet"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hsk7h"]
 size = Vector2(17, 17)

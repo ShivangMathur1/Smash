@@ -13,7 +13,7 @@ class_name Player extends CharacterBody2D
 @export var coyote_time = 0.05
 
 @export_group("Wall Jumping")
-@export var can_wall_jump = false
+@export var wall_jump_enabled = false
 @export var WALL_JUMP_VELOCITY = Vector2(200, -400)
 @export var WALL_SLIDE_VELOCITY = 100
 @export var wall_jump_control_loss_time = 0.2
@@ -26,7 +26,7 @@ class_name Player extends CharacterBody2D
 @export var dash_control_loss_time = 0.1
 
 @export_group("Shooting")
-@export var can_shoot = true
+@export var shooting_enabled = true
 @export var BULLET: PackedScene = preload("res://Scenes/character_bullet.tscn")
 @export var AMMO_CAPACITY = 12
 @export var shoot_time = 0.1
@@ -68,7 +68,7 @@ func _physics_process(delta):
 			coyote_timer.start(coyote_time)
 		
 		# Perform a wall sLide
-		if can_wall_jump and is_on_wall() and velocity.y > WALL_SLIDE_VELOCITY:
+		if wall_jump_enabled and is_on_wall() and velocity.y > WALL_SLIDE_VELOCITY:
 			velocity.y = move_toward(velocity.y, WALL_SLIDE_VELOCITY, 100)
 		if dash_state == Enums.dash_states.dashing:
 			velocity.y = 0
@@ -81,7 +81,7 @@ func _physics_process(delta):
 			jump_state = Enums.jump_states.jumping
 			velocity.y = JUMP_VELOCITY
 			play_particle(SPARKS, Vector2(0, 1))
-		elif is_on_wall() and can_wall_jump:
+		elif is_on_wall() and wall_jump_enabled:
 			jump_state = Enums.jump_states.wall_jumping
 			velocity = WALL_JUMP_VELOCITY
 			velocity.x *= get_wall_normal().x
@@ -101,7 +101,7 @@ func _physics_process(delta):
 	# Get the input direction
 	var direction = Input.get_axis("left", "right")
 	facing = direction if direction != 0 else facing
-	if can_wall_jump and is_on_wall() and not is_on_floor():
+	if wall_jump_enabled and is_on_wall() and not is_on_floor():
 		facing = get_wall_normal().x
 	
 	# Handle dashing
@@ -115,7 +115,7 @@ func _physics_process(delta):
 		play_particle(DASH_CLOUD, Vector2(-facing, 0))
 	
 	# Reset dash if wall jumped or jumped
-	if is_on_floor() or (can_wall_jump and is_on_wall()):
+	if is_on_floor() or (wall_jump_enabled and is_on_wall()):
 		if dash_state == Enums.dash_states.has_dashed:
 			dash_state = Enums.dash_states.can_dash
 	
@@ -137,7 +137,7 @@ func _physics_process(delta):
 	
 	
 	# Handle attack inputs
-	if Input.is_action_pressed("shoot") and can_shoot:
+	if Input.is_action_pressed("shoot") and shooting_enabled:
 		var x = BULLET.instantiate()
 		x.global_position = global_position
 		var pointing = Input.get_vector("left", "right", "up", "down")
@@ -149,7 +149,7 @@ func _physics_process(delta):
 			x.global_rotation = pointing.angle()
 		add_sibling(x)
 		ammo -= 1
-		can_shoot = false
+		shooting_enabled = false
 		if ammo <= 0:
 			shoot_timer.start(shoot_reload_time)
 			ammo_label.text = "reloading..."
@@ -192,7 +192,7 @@ func _on_inventory_collected() -> void:
 
 # Reload
 func _on_shoot_timer_timeout():
-	can_shoot = true
+	shooting_enabled = true
 	if ammo <= 0:
 		ammo = AMMO_CAPACITY
 		ammo_label.text = str(ammo)
@@ -207,6 +207,7 @@ func _on_horizontal_control_timer_timeout() -> void:
 func _on_health_death() -> void:
 	print("dead")
 
+# Invincbility and fake knockback when character is hit
 func _on_hurtbox_take_damage(attack: Attack) -> void:
 	health.take_damage(attack)
 	velocity = attack.direction * attack.force
@@ -222,6 +223,7 @@ func _on_coyote_timer_timeout() -> void:
 	if jump_state == Enums.jump_states.coyote_time:
 		jump_state = Enums.jump_states.jumping
 
+# Fake knockback to character when its hits connect
 func _on_melee_attack_hitbox_hit(attack: Attack, collision_layer: int) -> void:
 	if not is_on_floor():
 		velocity.y = -80
@@ -234,3 +236,4 @@ func _on_melee_attack_hitbox_hit(attack: Attack, collision_layer: int) -> void:
 # TODO: Handle can dash can jump with animations
 # TODO: add HUD and menus
 # TODO: Composite knockback
+# TODO: Remove fake knockback as well as uneccessary collision layer param for hitbox hit

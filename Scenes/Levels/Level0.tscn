@@ -225,67 +225,6 @@ level = ExtResource("4_75xyr")
 position = Vector2(3674.18, 436.974)
 shape = SubResource("CircleShape2D_cdst8")
 
-[node name="FlyingEnemy" parent="." instance=ExtResource("5_smedj")]
-position = Vector2(1663, -396)
-
-[node name="fungus_yellow_breakable_big" parent="." instance=ExtResource("6_hnxl3")]
-position = Vector2(592, 176)
-frame = 20
-
-[node name="fungus_yellow_breakable_big7" parent="." instance=ExtResource("6_hnxl3")]
-position = Vector2(48, 176)
-frame = 20
-
-[node name="fungus_yellow_breakable_big8" parent="." instance=ExtResource("6_hnxl3")]
-position = Vector2(32, 176)
-frame = 20
-
-[node name="fungus_yellow_breakable_big9" parent="." instance=ExtResource("6_hnxl3")]
-position = Vector2(-216, 176)
-frame = 20
-
-[node name="fungus_yellow_breakable_big2" parent="." instance=ExtResource("6_hnxl3")]
-position = Vector2(944, 80)
-frame = 20
-
-[node name="fungus_yellow_breakable_big3" parent="." instance=ExtResource("6_hnxl3")]
-position = Vector2(512, -160)
-frame = 20
-
-[node name="fungus_yellow_breakable_big4" parent="." instance=ExtResource("6_hnxl3")]
-position = Vector2(688, -384)
-frame = 20
-
-[node name="fungus_yellow_breakable_big5" parent="." instance=ExtResource("6_hnxl3")]
-position = Vector2(704, -384)
-frame = 71
-remove_on_death = true
-
-[node name="fungus_yellow_breakable_big6" parent="." instance=ExtResource("6_hnxl3")]
-position = Vector2(608, 176)
-frame = 71
-live_frame = 71
-remove_on_death = true
-death_frame = 0
-
-[node name="Crawler" parent="." instance=ExtResource("7_kpss2")]
-position = Vector2(1184, 112)
-
-[node name="Crawler2" parent="." instance=ExtResource("7_kpss2")]
-position = Vector2(768, -144)
-
-[node name="follower" parent="." instance=ExtResource("8_28v0p")]
-position = Vector2(1176, -384)
-
-[node name="Crawler3" parent="." instance=ExtResource("7_kpss2")]
-position = Vector2(1504, -992)
-
-[node name="Crawler4" parent="." instance=ExtResource("7_kpss2")]
-position = Vector2(1384, -992)
-
-[node name="follower2" parent="." instance=ExtResource("8_28v0p")]
-position = Vector2(1968, -1280)
-
 [node name="CoinStash" parent="." instance=ExtResource("9_k3mkv")]
 position = Vector2(656, 16)
 
@@ -293,7 +232,72 @@ position = Vector2(656, 16)
 position = Vector2(480, -976)
 rotation = 4.71239
 
-[node name="FlyingEnemy2" parent="." instance=ExtResource("5_smedj")]
+[node name="Enemies" type="Node" parent="."]
+
+[node name="FlyingEnemy2" parent="Enemies" instance=ExtResource("5_smedj")]
 position = Vector2(64, 32)
+
+[node name="Crawler" parent="Enemies" instance=ExtResource("7_kpss2")]
+position = Vector2(1184, 112)
+
+[node name="Crawler2" parent="Enemies" instance=ExtResource("7_kpss2")]
+position = Vector2(768, -144)
+
+[node name="follower" parent="Enemies" instance=ExtResource("8_28v0p")]
+position = Vector2(1176, -384)
+
+[node name="Crawler3" parent="Enemies" instance=ExtResource("7_kpss2")]
+position = Vector2(1504, -992)
+
+[node name="Crawler4" parent="Enemies" instance=ExtResource("7_kpss2")]
+position = Vector2(1384, -992)
+
+[node name="follower2" parent="Enemies" instance=ExtResource("8_28v0p")]
+position = Vector2(1968, -1280)
+
+[node name="FlyingEnemy" parent="Enemies" instance=ExtResource("5_smedj")]
+position = Vector2(1663, -396)
+
+[node name="Breakables" type="Node" parent="."]
+
+[node name="fungus_yellow_breakable_big" parent="Breakables" instance=ExtResource("6_hnxl3")]
+position = Vector2(592, 176)
+frame = 20
+
+[node name="fungus_yellow_breakable_big7" parent="Breakables" instance=ExtResource("6_hnxl3")]
+position = Vector2(48, 176)
+frame = 20
+
+[node name="fungus_yellow_breakable_big8" parent="Breakables" instance=ExtResource("6_hnxl3")]
+position = Vector2(32, 176)
+frame = 20
+
+[node name="fungus_yellow_breakable_big9" parent="Breakables" instance=ExtResource("6_hnxl3")]
+position = Vector2(-216, 176)
+frame = 20
+
+[node name="fungus_yellow_breakable_big2" parent="Breakables" instance=ExtResource("6_hnxl3")]
+position = Vector2(944, 80)
+frame = 20
+
+[node name="fungus_yellow_breakable_big3" parent="Breakables" instance=ExtResource("6_hnxl3")]
+position = Vector2(512, -160)
+frame = 20
+
+[node name="fungus_yellow_breakable_big4" parent="Breakables" instance=ExtResource("6_hnxl3")]
+position = Vector2(688, -384)
+frame = 20
+
+[node name="fungus_yellow_breakable_big5" parent="Breakables" instance=ExtResource("6_hnxl3")]
+position = Vector2(704, -384)
+frame = 71
+remove_on_death = true
+
+[node name="fungus_yellow_breakable_big6" parent="Breakables" instance=ExtResource("6_hnxl3")]
+position = Vector2(608, 176)
+frame = 71
+live_frame = 71
+remove_on_death = true
+death_frame = 0
 
 [connection signal="body_entered" from="LevelSwitch" to="LevelSwitch" method="_on_body_entered"]
