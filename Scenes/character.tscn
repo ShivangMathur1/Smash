@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c02s7yf50nmet"]
+[gd_scene load_steps=17 format=3 uid="uid://c02s7yf50nmet"]
 
 [ext_resource type="Script" path="res://Scripts/character.gd" id="1_28gla"]
 [ext_resource type="PackedScene" uid="uid://c8bwem75fa8i8" path="res://Scenes/Composites/health.tscn" id="2_5qa7e"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://pevh6ar2plu4" path="res://Assets/Sprites/attack.png" id="5_nwk8n"]
 [ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Scenes/Composites/hitbox.tscn" id="6_swowf"]
 [ext_resource type="Script" path="res://Scripts/attack.gd" id="7_wcw4a"]
+[ext_resource type="PackedScene" uid="uid://c80b7upla5lnh" path="res://Scenes/Levels/game_menu.tscn" id="8_ic3gs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rh7ij"]
 radius = 4.0
@@ -292,6 +293,8 @@ disabled = true
 libraries = {
 "": SubResource("AnimationLibrary_46jar")
 }
+
+[node name="GameMenu" parent="." instance=ExtResource("8_ic3gs")]
 
 [connection signal="take_damage" from="Hurtbox" to="." method="_on_hurtbox_take_damage"]
 [connection signal="death" from="Health" to="." method="_on_health_death"]

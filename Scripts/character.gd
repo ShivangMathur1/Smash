@@ -45,6 +45,7 @@ class_name Player extends CharacterBody2D
 @onready var inventory: Inventory = $Inventory
 @onready var attack: Sprite2D = $Attack
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var game_menu: GameMenu = $GameMenu
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var horizontal_control = true
@@ -60,6 +61,10 @@ func _ready():
 	jump_state = Enums.jump_states.cannot_jump
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed("pause"):
+		get_tree().paused = true
+		game_menu.show()
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += air_gravity_values() * gravity * delta
