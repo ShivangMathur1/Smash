@@ -239,8 +239,6 @@ func _on_melee_attack_hitbox_hit(attack: Attack, collision_layer: int) -> void:
 
 # TODO: bullet spark direction
 # TODO: Handle can dash can jump with animations
-# TODO: add HUD and menus
 # TODO: Composite knockback
 # TODO: Remove fake knockback as well as uneccessary collision layer param for hitbox hit
-# TODO: Remove fake knockback as well as uneccessary collision layer param for hitbox hit
-# TODO: Sream line pause menu and UI by adding main node
+# TODO: Stream line pause menu and UI by adding main node
