@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cecwwpdtewcfh"]
+
+[ext_resource type="Script" path="res://Assets/Composites/pickbox.gd" id="1_du3ur"]
+
+[node name="Pickbox" type="Area2D"]
+collision_layer = 0
+monitoring = false
+monitorable = false
+script = ExtResource("1_du3ur")
+
+[node name="PickableTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="PickableTimer" to="." method="_on_pickable_timer_timeout"]

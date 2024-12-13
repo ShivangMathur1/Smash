@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp1k845nkelvi"]
+
+[ext_resource type="Script" path="res://Assets/Environment/Levels/main.gd" id="1_wam6m"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_wam6m")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

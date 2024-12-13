@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Smash"
-run/main_scene="res://Scenes/Levels/main_menu.tscn"
+run/main_scene="res://Assets/Menus/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Enums="*res://Scripts/enums.gd"
+Enums="*res://Assets/Autoloads/enums.gd"
 
 [editor]
 
