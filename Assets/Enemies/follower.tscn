@@ -60,7 +60,7 @@ collision_layer = 16
 shape = SubResource("RectangleShape2D_ylugp")
 
 [node name="Health" parent="." instance=ExtResource("4_vfoxk")]
-maxHealth = 2
+max_health = 2
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 collision_layer = 0

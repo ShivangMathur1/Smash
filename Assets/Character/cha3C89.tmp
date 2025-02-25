@@ -228,6 +228,28 @@ _data = {
 z_index = 2
 collision_mask = 10
 script = ExtResource("1_ulk0t")
+SPEED = null
+TERMINAL_VELOCITY = null
+hit_invincibility_time = null
+hit_control_loss_time = null
+jump_state = null
+SPARKS = null
+JUMP_VELOCITY = null
+coyote_time = null
+wall_jump_enabled = null
+WALL_JUMP_VELOCITY = null
+WALL_SLIDE_VELOCITY = null
+wall_jump_control_loss_time = null
+dash_state = null
+DASH_CLOUD = null
+DASH_SPEED = null
+dash_time = null
+dash_control_loss_time = null
+shooting_enabled = null
+BULLET = null
+AMMO_CAPACITY = null
+shoot_time = null
+shoot_reload_time = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
@@ -259,7 +281,6 @@ position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_2o1yp")
 
 [node name="Health" parent="." instance=ExtResource("3_xft6x")]
-max_health = 5
 
 [node name="Inventory" parent="." instance=ExtResource("4_1l8u8")]
 
@@ -300,8 +321,6 @@ libraries = {
 [node name="HUD" parent="." instance=ExtResource("9_jelae")]
 
 [connection signal="take_damage" from="Hurtbox" to="." method="_on_hurtbox_take_damage"]
-[connection signal="damage_healed" from="Health" to="." method="_on_health_damage_healed"]
-[connection signal="damage_taken" from="Health" to="." method="_on_health_damage_taken"]
 [connection signal="death" from="Health" to="." method="_on_health_death"]
 [connection signal="collected" from="Inventory" to="." method="_on_inventory_collected"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

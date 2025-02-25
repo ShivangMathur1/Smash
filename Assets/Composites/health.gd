@@ -4,12 +4,12 @@ signal damage_taken(current_health, damage_taken)
 signal damage_healed(current_health, damage_healed)
 signal death
 
-@export var maxHealth = 10
+@export var max_health = 10
 
 var health
 
 func _ready() -> void:
-	health = maxHealth
+	health = max_health
 	
 func take_damage(attack: Attack):
 	health = max(health - attack.damage, 0)
@@ -18,5 +18,5 @@ func take_damage(attack: Attack):
 		death.emit()
 
 func heal(amount):
-	health = min(health + amount, maxHealth)
+	health = min(health + amount, max_health)
 	damage_healed.emit(health, amount)

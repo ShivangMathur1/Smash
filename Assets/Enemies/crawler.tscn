@@ -59,7 +59,7 @@ position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_swbso")
 
 [node name="Health" parent="." instance=ExtResource("5_3c2gb")]
-maxHealth = 2
+max_health = 2
 
 [node name="EdgeDetector" type="RayCast2D" parent="."]
 target_position = Vector2(0, 10)

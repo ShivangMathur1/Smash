@@ -38,8 +38,7 @@ class_name Player extends CharacterBody2D
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var horizontal_control_timer: Timer = $HorizontalControlTimer
 @onready var invincibility_timer: Timer = $InvincibilityTimer
-@onready var ammo_label = $CanvasLayer/AmmoLabel
-@onready var currency_label: Label = $CanvasLayer/CurrencyLabel
+@onready var hud: HUD = $HUD
 @onready var health: Health = $Health
 @onready var hurtbox: Hurtbox2D = $Hurtbox
 @onready var inventory: Inventory = $Inventory
@@ -49,14 +48,13 @@ class_name Player extends CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var horizontal_control = true
-var ammo
 
 var facing = 1.0
 
 func _ready():
-	ammo = AMMO_CAPACITY
-	ammo_label.text = str(ammo)
-	currency_label.text = "0"
+	hud.ammo = AMMO_CAPACITY
+	hud.currency = inventory.inventory_items.currency
+	hud.max_health = health.max_health
 	dash_state = Enums.dash_states.cannot_dash
 	jump_state = Enums.jump_states.cannot_jump
 
@@ -153,15 +151,13 @@ func _physics_process(delta):
 		else:
 			x.global_rotation = pointing.angle()
 		add_sibling(x)
-		ammo -= 1
+		hud.ammo -= 1
 		shooting_enabled = false
-		if ammo <= 0:
+		if hud.ammo <= 0:
 			shoot_timer.start(shoot_reload_time)
-			ammo_label.text = "reloading..."
 		else:
 			shoot_timer.start(shoot_time)
-			ammo_label.text = str(ammo)
-	
+
 	if Input.is_action_just_pressed("melee"):
 		if facing > 0:
 			animation_player.play("attack_right")
@@ -187,20 +183,19 @@ func collect(items: Items):
 	inventory.collect(items)
 	if items.health > 0:
 		health.heal(items.health)
-	currency_label.text = str(inventory.inventory_items.currency)
+		#hud.currency = inventory.inventory_items.currency
 	if inventory.buffer.currency > 0:
-		currency_label.text +=  " + " + str(inventory.buffer.currency)
+		hud.currency_buffer = inventory.buffer.currency
 
 
 func _on_inventory_collected() -> void:
-	currency_label.text = str(inventory.inventory_items.currency)
+	hud.currency = inventory.inventory_items.currency
 
 # Reload
 func _on_shoot_timer_timeout():
 	shooting_enabled = true
-	if ammo <= 0:
-		ammo = AMMO_CAPACITY
-		ammo_label.text = str(ammo)
+	if hud.ammo <= 0:
+		hud.ammo = AMMO_CAPACITY
 
 func _on_dash_timer_timeout():
 	if dash_state == Enums.dash_states.dashing:
@@ -215,6 +210,7 @@ func _on_health_death() -> void:
 # Invincbility and fake knockback when character is hit
 func _on_hurtbox_take_damage(attack: Attack) -> void:
 	health.take_damage(attack)
+	hud.health
 	velocity = attack.direction * attack.force
 	hurtbox.set_deferred("monitorable", false)
 	invincibility_timer.start(hit_invincibility_time)
@@ -236,6 +232,13 @@ func _on_melee_attack_hitbox_hit(attack: Attack, collision_layer: int) -> void:
 		velocity.x = -attack.direction.x * 80
 		horizontal_control = false
 		horizontal_control_timer.start(0.1)
+
+func _on_health_damage_healed(current_health: Variant, damage_healed: Variant) -> void:
+	hud.health = current_health
+
+
+func _on_health_damage_taken(current_health: Variant, damage_taken: Variant) -> void:
+	hud.health = current_health
 
 # TODO: bullet spark direction
 # TODO: Handle can dash can jump with animations

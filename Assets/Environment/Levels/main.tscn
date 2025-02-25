@@ -1,14 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://bp1k845nkelvi"]
+[gd_scene load_steps=6 format=3 uid="uid://bp1k845nkelvi"]
 
 [ext_resource type="Script" path="res://Assets/Environment/Levels/main.gd" id="1_wam6m"]
+[ext_resource type="PackedScene" uid="uid://c4fjjbf5jsv2f" path="res://Assets/Environment/Levels/Level0.tscn" id="2_w0prp"]
+[ext_resource type="PackedScene" uid="uid://c02s7yf50nmet" path="res://Assets/Character/character.tscn" id="3_wiav1"]
+[ext_resource type="PackedScene" uid="uid://c80b7upla5lnh" path="res://Assets/Menus/game_menu.tscn" id="4_1deql"]
+[ext_resource type="PackedScene" uid="uid://dp5syilj8qiky" path="res://Assets/Menus/hud.tscn" id="5_x8pcl"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_wam6m")
 
 [node name="World" type="Node2D" parent="."]
 
+[node name="Node2D" parent="World" instance=ExtResource("2_w0prp")]
+
+[node name="CharacterBody2D2" parent="World/Node2D" instance=ExtResource("3_wiav1")]
+
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="GameMenu" parent="GUI" instance=ExtResource("4_1deql")]
+
+[node name="HUD" parent="GUI" instance=ExtResource("5_x8pcl")]
