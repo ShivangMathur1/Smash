@@ -76,6 +76,10 @@ one_shot = true
 [node name="DeathSpawner" parent="." instance=ExtResource("6_slbqw")]
 items = SubResource("Resource_xb2ti")
 
+[node name="EdgeDetector" type="RayCast2D" parent="."]
+target_position = Vector2(0, 10)
+collision_mask = 10
+
 [connection signal="take_damage" from="Hurtbox" to="." method="_on_hurtbox_take_damage"]
 [connection signal="death" from="Health" to="." method="_on_health_death"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

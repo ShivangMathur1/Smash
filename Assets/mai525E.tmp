@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvupfflc3tnl2"]
+
+[ext_resource type="Script" path="res://Assets/main.gd" id="1_n537y"]
+[ext_resource type="PackedScene" uid="uid://br85nh27fp2uu" path="res://Assets/Menus/SelectionWheel/selection_wheel.tscn" id="2_pp6b3"]
+[ext_resource type="Script" path="res://Assets/Menus/SelectionWheel/wheel_options.gd" id="3_7as0m"]
+
+[sub_resource type="Resource" id="Resource_m7flw"]
+script = ExtResource("3_7as0m")
+name = "Continue"
+description = "Continue your game"
+
+[sub_resource type="Resource" id="Resource_u8k2e"]
+script = ExtResource("3_7as0m")
+name = "Options"
+description = "Change settings and controls"
+
+[sub_resource type="Resource" id="Resource_3pwxf"]
+script = ExtResource("3_7as0m")
+name = "Save and exit"
+description = "Save the game and go to main menu"
+
+[sub_resource type="Resource" id="Resource_7e478"]
+script = ExtResource("3_7as0m")
+name = "Save and quit"
+description = "save game and quit to desktop"
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_n537y")
+
+[node name="Menus" type="CanvasLayer" parent="."]
+
+[node name="GameMenu" type="CenterContainer" parent="Menus"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SelectionWheel" parent="Menus/GameMenu" instance=ExtResource("2_pp6b3")]
+visible = false
+layout_mode = 2
+options = Array[ExtResource("3_7as0m")]([SubResource("Resource_m7flw"), SubResource("Resource_u8k2e"), SubResource("Resource_3pwxf"), SubResource("Resource_7e478")])
+
+[node name="Levels" type="Node" parent="."]
+
+[connection signal="item_selected" from="Menus/GameMenu/SelectionWheel" to="." method="_on_selection_wheel_item_selected"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://br85nh27fp2uu"]
+
+[ext_resource type="Script" path="res://Assets/Menus/selection_wheel.gd" id="1_5xo4t"]
+
+[node name="SelectionWheel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_5xo4t")
+background_color = Color(0.140447, 0.140447, 0.140447, 0.74902)
+line_color = null
+inner_radius = 10.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c02s7yf50nmet"]
+[gd_scene load_steps=17 format=3 uid="uid://c02s7yf50nmet"]
 
 [ext_resource type="Script" path="res://Assets/Character/character.gd" id="1_ulk0t"]
 [ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Assets/Composites/hurtbox.tscn" id="2_b6rua"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://pevh6ar2plu4" path="res://Assets/Character/attack.png" id="5_bm10c"]
 [ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Assets/Composites/hitbox.tscn" id="6_jjpya"]
 [ext_resource type="Script" path="res://Assets/Types/attack.gd" id="7_dgwmk"]
-[ext_resource type="PackedScene" uid="uid://c80b7upla5lnh" path="res://Assets/Menus/game_menu.tscn" id="8_hv2ny"]
 [ext_resource type="PackedScene" uid="uid://dp5syilj8qiky" path="res://Assets/Menus/hud.tscn" id="9_jelae"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rh7ij"]
@@ -294,8 +293,6 @@ disabled = true
 libraries = {
 "": SubResource("AnimationLibrary_46jar")
 }
-
-[node name="GameMenu" parent="." instance=ExtResource("8_hv2ny")]
 
 [node name="HUD" parent="." instance=ExtResource("9_jelae")]
 

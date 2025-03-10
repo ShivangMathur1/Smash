@@ -1,5 +1,5 @@
 extends StaticBody2D
-@export var EXPLOSION: PackedScene = preload("res://Scenes/Particles/explosion.tscn")
+@export var EXPLOSION: PackedScene = preload("res://Assets/Particles/explosion.tscn")
 
 func _on_hurtbox_take_damage(attack: Attack) -> void:
 	var explosion = EXPLOSION.instantiate()
