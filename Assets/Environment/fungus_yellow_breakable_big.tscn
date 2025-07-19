@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://g74siw6yatg8"]
 
 [ext_resource type="Texture2D" uid="uid://ceed2i2ut4r2j" path="res://Assets/Environment/four-seasons-tileset.png" id="1_jj5fk"]
-[ext_resource type="Script" path="res://Assets/Composites/hurtbox.gd" id="2_6ea3a"]
-[ext_resource type="Script" path="res://Assets/Environment/breakable_background.gd" id="2_nos82"]
+[ext_resource type="Script" uid="uid://bnn7j8ditnsku" path="res://Assets/Composites/hurtbox.gd" id="2_6ea3a"]
+[ext_resource type="Script" uid="uid://b2aj802vn1b7l" path="res://Assets/Environment/breakable_background.gd" id="2_nos82"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xeo7l"]
 size = Vector2(16, 16)

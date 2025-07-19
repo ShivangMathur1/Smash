@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dp5syilj8qiky"]
 
-[ext_resource type="Script" path="res://Assets/Menus/hud.gd" id="1_a0fx8"]
+[ext_resource type="Script" uid="uid://cr2ikpvk1mj8" path="res://Assets/Menus/hud.gd" id="1_a0fx8"]
 [ext_resource type="Theme" uid="uid://dtqc0qh1lnd56" path="res://Assets/Menus/base_theme.tres" id="1_wovjb"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eu2e0"]

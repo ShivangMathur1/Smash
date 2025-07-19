@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dty08x2mweo2q"]
 
-[ext_resource type="Script" path="res://Assets/Character/bullet.gd" id="1_4l86x"]
+[ext_resource type="Script" uid="uid://dsctwdw1h77vc" path="res://Assets/Character/bullet.gd" id="1_4l86x"]
 [ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Assets/Composites/hitbox.tscn" id="2_if5rm"]
-[ext_resource type="Script" path="res://Assets/Types/attack.gd" id="3_0letv"]
+[ext_resource type="Script" uid="uid://dir1lx43pixwk" path="res://Assets/Types/attack.gd" id="3_0letv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kwdur"]
 radius = 2.0

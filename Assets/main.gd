@@ -9,7 +9,7 @@ func _ready() -> void:
 		WheelOptions.new("Resume", "Continue to your game"),
 		WheelOptions.new("Options", "Change settings and keybinds"),
 		WheelOptions.new("Save and exit", "Save the game and go to main menu"),
-		WheelOptions.new("Save and quit", "ave game and quit to desktop"),
+		WheelOptions.new("Save and quit", "Save game and quit to desktop"),
 		]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

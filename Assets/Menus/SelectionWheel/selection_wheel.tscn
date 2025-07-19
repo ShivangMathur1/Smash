@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://br85nh27fp2uu"]
 
-[ext_resource type="Script" path="res://Assets/Menus/SelectionWheel/selection_wheel.gd" id="1_ywu4o"]
+[ext_resource type="Script" uid="uid://b2rptq70bmeh8" path="res://Assets/Menus/SelectionWheel/selection_wheel.gd" id="1_ywu4o"]
 
 [sub_resource type="Theme" id="Theme_tbw17"]
 

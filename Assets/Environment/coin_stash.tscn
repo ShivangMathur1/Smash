@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dxlpf7kpayj4r"]
 
 [ext_resource type="Texture2D" uid="uid://ceed2i2ut4r2j" path="res://Assets/Environment/four-seasons-tileset.png" id="1_jqmaj"]
-[ext_resource type="Script" path="res://Assets/Environment/coin_stash.gd" id="2_gdp6h"]
+[ext_resource type="Script" uid="uid://yakxb4md25uc" path="res://Assets/Environment/coin_stash.gd" id="2_gdp6h"]
 [ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Assets/Composites/hurtbox.tscn" id="4_00upu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdmta"]

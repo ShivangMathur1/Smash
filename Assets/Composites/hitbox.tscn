@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bcnp0ij0muhyc"]
 
-[ext_resource type="Script" path="res://Assets/Composites/hitbox.gd" id="1_paxq3"]
+[ext_resource type="Script" uid="uid://n640yo478hbe" path="res://Assets/Composites/hitbox.gd" id="1_paxq3"]
 
 [node name="Hitbox" type="Area2D"]
 editor_description = "They hit"

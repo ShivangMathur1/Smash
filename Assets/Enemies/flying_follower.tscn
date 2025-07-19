@@ -1,12 +1,12 @@
 [gd_scene load_steps=14 format=3 uid="uid://cugeqrxbbu65h"]
 
-[ext_resource type="Script" path="res://Assets/Enemies/flying_follower.gd" id="1_n0e8m"]
+[ext_resource type="Script" uid="uid://bcfixuua6jp3c" path="res://Assets/Enemies/flying_follower.gd" id="1_n0e8m"]
 [ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Assets/Composites/hitbox.tscn" id="2_fvh75"]
 [ext_resource type="PackedScene" uid="uid://c8bwem75fa8i8" path="res://Assets/Composites/health.tscn" id="3_2aki0"]
 [ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Assets/Composites/hurtbox.tscn" id="4_cn2es"]
-[ext_resource type="Script" path="res://Assets/Types/attack.gd" id="5_0l7wd"]
+[ext_resource type="Script" uid="uid://dir1lx43pixwk" path="res://Assets/Types/attack.gd" id="5_0l7wd"]
 [ext_resource type="PackedScene" uid="uid://csb2e6bf3mo17" path="res://Assets/Composites/death_spawner.tscn" id="5_48hw0"]
-[ext_resource type="Script" path="res://Assets/Types/Item.gd" id="6_eon3t"]
+[ext_resource type="Script" uid="uid://bfd34rjk8ddmc" path="res://Assets/Types/Item.gd" id="6_eon3t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eno3b"]
 size = Vector2(40, 40)

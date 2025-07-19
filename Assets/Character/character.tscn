@@ -1,12 +1,12 @@
 [gd_scene load_steps=17 format=3 uid="uid://c02s7yf50nmet"]
 
-[ext_resource type="Script" path="res://Assets/Character/character.gd" id="1_ulk0t"]
+[ext_resource type="Script" uid="uid://t27qerx4xjf3" path="res://Assets/Character/character.gd" id="1_ulk0t"]
 [ext_resource type="PackedScene" uid="uid://bq06aabs5hecr" path="res://Assets/Composites/hurtbox.tscn" id="2_b6rua"]
 [ext_resource type="PackedScene" uid="uid://c8bwem75fa8i8" path="res://Assets/Composites/health.tscn" id="3_xft6x"]
 [ext_resource type="PackedScene" uid="uid://bq7oqjgk4ac4o" path="res://Assets/Composites/inventory.tscn" id="4_1l8u8"]
 [ext_resource type="Texture2D" uid="uid://pevh6ar2plu4" path="res://Assets/Character/attack.png" id="5_bm10c"]
 [ext_resource type="PackedScene" uid="uid://bcnp0ij0muhyc" path="res://Assets/Composites/hitbox.tscn" id="6_jjpya"]
-[ext_resource type="Script" path="res://Assets/Types/attack.gd" id="7_dgwmk"]
+[ext_resource type="Script" uid="uid://dir1lx43pixwk" path="res://Assets/Types/attack.gd" id="7_dgwmk"]
 [ext_resource type="PackedScene" uid="uid://dp5syilj8qiky" path="res://Assets/Menus/hud.tscn" id="9_jelae"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rh7ij"]
@@ -218,9 +218,9 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_46jar"]
 _data = {
-"RESET": SubResource("Animation_nnfil"),
-"attack_left": SubResource("Animation_chv3h"),
-"attack_right": SubResource("Animation_mvvu8")
+&"RESET": SubResource("Animation_nnfil"),
+&"attack_left": SubResource("Animation_chv3h"),
+&"attack_right": SubResource("Animation_mvvu8")
 }
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
